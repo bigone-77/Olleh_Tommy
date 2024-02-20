@@ -60,10 +60,10 @@ const LessonPage = () => {
               title={lessonData.title}
               description={lessonData.description}
               categoryId={lessonData.categoryId}
-              gatherStartDate={lessonData.gatherStartDate}
-              gatherEndDate={lessonData.gatherEndDate}
               lessonStartTime={lessonData.lessonStartTime}
               lessonEndTime={lessonData.lessonEndTime}
+              lessonStartDate={lessonData.lessonStartDate}
+              lessonEndDate={lessonData.lessonEndDate}
               teacher={lessonData.lessonTeacherList[0].name}
               limitCount={lessonData.limitCount}
               lessonType={lessonData.lessonType}

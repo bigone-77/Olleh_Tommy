@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import { formatTime } from '../../utils/dayjs';
 import { transEnCategoryId } from '../../utils/transKrCategoryId';
 import LeassonInput from './Input';
@@ -7,10 +8,10 @@ interface LessonDetailProps {
   title: string;
   description: string;
   categoryId: number;
-  gatherStartDate: string;
-  gatherEndDate: string;
   lessonStartTime: string;
   lessonEndTime: string;
+  lessonStartDate: string;
+  lessonEndDate: string;
   teacher: string;
   limitCount: number;
   lessonType: string;
@@ -22,8 +23,8 @@ function LeassonDetail({
   title,
   description,
   categoryId,
-  gatherStartDate,
-  gatherEndDate,
+  lessonStartDate,
+  lessonEndDate,
   lessonStartTime,
   lessonEndTime,
   teacher,
@@ -55,13 +56,18 @@ function LeassonDetail({
             iconSrc="/assets/Lesson/date.svg"
             label="일 &nbsp;시"
             value={
-              formatTime(gatherStartDate, 'YYYY.MM.DD (ddd)') +
+              formatTime(lessonStartTime, 'YYYY.MM.DD (ddd)') +
               ' ~ ' +
-              formatTime(gatherEndDate, 'MM.DD(ddd)') +
+              formatTime(lessonEndTime, 'MM.DD(ddd)') +
               ' ' +
-              formatTime(lessonStartTime, 'HH:mm') +
+              // formatTime(lessonStartTime, 'HH:mm') +
+              // '~' +
+              // formatTime(lessonEndTime, 'HH:mm')
+              (dayjs(lessonStartTime).get('h') + 12) +
+              ':00' +
               '~' +
-              formatTime(lessonEndTime, 'HH:mm')
+              (dayjs(lessonEndTime).get('h') + 12) +
+              ':00'
             }
           />
           <LeassonInput

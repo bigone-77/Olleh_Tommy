@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { formatTime, fromNow } from '../../utils/dayjs';
 import { getHour } from '../../utils/getHour';
+import dayjs from 'dayjs';
 
 interface LessonCardProps {
   id: number;
@@ -41,8 +42,14 @@ const LessonCard = ({
           {formatTime(endDate, 'MM.DD (ddd)')}
         </p>
         <p className="text-sm font-medium text-[#666666]">
-          {formatTime(startTime, 'HH:mm') + '~' + formatTime(endTime, 'HH:mm')}{' '}
-          ({getHour(endTime) - getHour(startTime)}시간)
+          {/* {formatTime(startTime, 'HH:mm') + '~' + formatTime(endTime, 'HH:mm')}{' '} */}
+          {/* (dayjs(lessonStartTime).get('h') + 12) + ':00' + '~' +
+          (dayjs(lessonEndTime).get('h') + 12) + ':00' ( */}
+          {`${dayjs(startTime).get('h') + 12}:00` +
+            '~' +
+            `${dayjs(endTime).get('h') + 12}:00`}
+          {'    '}
+          {getHour(endTime) - getHour(startTime)}시간
         </p>
       </section>
       <span className="absolute right-0 flex items-center justify-center w-16 h-8 rounded-tl-lg top-56 bg-primary01">
